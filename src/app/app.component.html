@@ -1,0 +1,25 @@
+<form [formGroup]="form" (submit)="save()">
+  <p>Find a free username</p>
+
+  <input 
+    style="width: 220px"
+    type="text" 
+    formControlName="name"
+    placeholder="Search a free username (min 3 chars)"
+  >
+
+  <button [disabled]="form.invalid || form.pending">
+    Send
+    <span *ngIf="form.get('name').pending"> (searching)</span>
+  </button>
+
+  <p 
+    style="color: red"
+    *ngIf="form.get('name').errors?.userNameExists">Not available</p>
+
+  <hr>
+
+  <small>NOTE: Bret, Samantha, Karianne are already taken. Try them</small>
+
+
+</form>
